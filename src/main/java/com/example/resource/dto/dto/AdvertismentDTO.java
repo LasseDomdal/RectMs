@@ -1,32 +1,34 @@
 package com.example.resource.dto.dto;
 
-import com.example.domain.Category;
-import com.example.domain.Type;
-
 public class AdvertismentDTO {
 
 //    liste data med mulighed for query params type,category,mobile
-    private final Type type;
-    private final Category category;
+    private final String type;
+    private final String category;
     private final String mobile;
-    public final String HeaderText;
+    public final String headerText;
     public final String text;
     public final double price;
+    public final String imgUrl;
 
-    public AdvertismentDTO(Type type, Category category, String mobile, String headerText, String text, double price) {
-        this.type = type;
+    public AdvertismentDTO(String type, String category, String mobile, String headerText, String text, double price, String imgUrl) {
         this.category = category;
-        this.mobile = mobile;
-        HeaderText = headerText;
+        this.type = type;
+        this.headerText = headerText;
         this.text = text;
         this.price = price;
+        this.mobile = mobile;
+        this.imgUrl = imgUrl;
+
+
+
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
@@ -35,7 +37,7 @@ public class AdvertismentDTO {
     }
 
     public String getHeaderText() {
-        return HeaderText;
+        return headerText;
     }
 
     public String getText() {
@@ -44,5 +46,9 @@ public class AdvertismentDTO {
 
     public double getPrice() {
         return price;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
     }
 }

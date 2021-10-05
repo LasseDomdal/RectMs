@@ -1,23 +1,20 @@
 package com.example.resource.dto.dto;
 
-import com.example.domain.Category;
-import com.example.domain.Type;
-
-public class AdvertisementDetailsTDo {
+public class AdvertisementDetailsDTO {
     public final String id;
-    public final Category category;
-    public final Type type;
-    public final String HeaderText;
+    public final String category;
+    public final String type;
+    public final String headerText;
     public final String text;
     public final double price;
     public final String mobile;
     public final String imgUrl;
 
-    public AdvertisementDetailsTDo(String id, Category category, Type type, String headerText, String text, double price, String mobile, String imgUrl) {
+    public AdvertisementDetailsDTO(String id, String category, String type, String headerText, String text, double price, String mobile, String imgUrl) {
         this.id = id;
         this.category = category;
         this.type = type;
-        HeaderText = headerText;
+        this.headerText = headerText;
         this.text = text;
         this.price = price;
         this.mobile = mobile;
@@ -28,16 +25,16 @@ public class AdvertisementDetailsTDo {
         return id;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
     public String getHeaderText() {
-        return HeaderText;
+        return headerText;
     }
 
     public String getText() {

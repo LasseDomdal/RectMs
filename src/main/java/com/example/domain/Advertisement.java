@@ -1,28 +1,32 @@
 package com.example.domain;
 
+import java.util.UUID;
+
 public class Advertisement {
 
-public String id;
+public final UUID id;
 public Category category;
 public Type type;
-public String HeaderText;
+public String headerText;
 public String text;
 public double price;
 public String mobile;
 public String imgUrl;
 
-    public Advertisement(String id, Category category, Type type, String headerText, String text, double price, String mobile, String imgUrl) {
-        this.id = id;
+    public Advertisement(Category category, Type type, String headerText, String text, double price, String mobile, String imgUrl) {
+        this.id = UUID.randomUUID();
         this.category = category;
         this.type = type;
-        HeaderText = headerText;
+        this.headerText = headerText;
         this.text = text;
         this.price = price;
         this.mobile = mobile;
         this.imgUrl = imgUrl;
     }
 
-    public String getId() {
+
+
+    public UUID getId() {
         return id;
     }
 
@@ -35,7 +39,7 @@ public String imgUrl;
     }
 
     public String getHeaderText() {
-        return HeaderText;
+        return headerText;
     }
 
     public String getText() {

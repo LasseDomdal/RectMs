@@ -1,14 +1,12 @@
 package com.example.resource.dto.dto;
 
-import com.example.domain.Category;
-import com.example.domain.Type;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CreateAdvertismentDTO {
+public class CreateAdvertisementDTO {
 
-    private final Type type;
-    private final Category category;
+    private final String type;
+    private final String category;
     private final String mobile;
     public final String headerText;
     public final String text;
@@ -18,17 +16,17 @@ public class CreateAdvertismentDTO {
 
 
     @JsonCreator
-    public CreateAdvertismentDTO(
-            @JsonProperty("type") Type type,
-            @JsonProperty("category") Category category,
-            @JsonProperty("mobile") String mobile,
+    public CreateAdvertisementDTO(
+            @JsonProperty("category") String category,
+            @JsonProperty("type") String type,
             @JsonProperty("headerText") String headerText,
             @JsonProperty("text") String text,
             @JsonProperty("price") double price,
+            @JsonProperty("mobile") String mobile,
             @JsonProperty("imgUrl") String imgUrl) {
 
-        this.type = type;
         this.category = category;
+        this.type = type;
         this.mobile = mobile;
         this.headerText = headerText;
         this.text = text;
@@ -37,11 +35,11 @@ public class CreateAdvertismentDTO {
 
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 

@@ -2,35 +2,50 @@ package com.example.resource.dto;
 
 
 import com.example.domain.Advertisement;
+import com.example.resource.dto.dto.AdvertisementDetailsDTO;
+import com.example.resource.dto.dto.CreateAdvertisementDTO;
 
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
 
-@Path("advertisement")
+@Path("/advertisements")
 public class AdvertisementResource {
 
-    private static List<Advertisement> advertisements = new ArrayList<>();
+    private Mapper mapper = new Mapper();
+    public static List<Advertisement> advertisements = new ArrayList<>();
 
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @GET
-//
-//
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @GET
-//    @Path("/{sn}")
-
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @POST
-//    public AdvertisementDetailsTDo createAdvertisement (CreateAdvertismentDTO createAdvertismentDTO) {
-//        AdvertisementDetailsTDo ad = new AdvertisementDetailsTDo(createAdvertismentDTO.getType(), createAdvertismentDTO.getCategory(),
-//                createAdvertismentDTO.getMobile(), createAdvertismentDTO.getHeaderText(),
-//                createAdvertismentDTO.getText(), createAdvertismentDTO.getPrice(),
-//                createAdvertismentDTO.getImgUrl());
-//        advertisement.add(ad);
-//        return ad;
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    public List<Advertisement> getAdvertisements() {
+        return advertisements;
     }
+
+
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    @Path("/{id}")
+    public AdvertisementDetailsDTO getAdvertisement(@PathParam("id") String id) {
+        return advertisements.stream()
+                .filter(a -> a.getId().toString().equals(id))
+                .map(mapper::toAdvertisementDetails)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Not found"));
+    }
+
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @POST
+    public AdvertisementDetailsDTO createAdvertisement (CreateAdvertisementDTO createAdvertisementDTO) {
+        Advertisement ad = mapper.toCreateAdvertisement(createAdvertisementDTO);
+        advertisements.add(ad);
+        return mapper.toAdvertisementDetails(ad);
+    }
+
+
 
 
 }

@@ -5,6 +5,6 @@ public enum Category {
     Motorcycle,
     Cars,
     Scooter,
-    Bicycle
+    Bicycle,
 
 }
